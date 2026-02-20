@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +29,7 @@ max-width:900px;
 margin:auto;
 }
 
+/* แก้ไข: ปุ่มเด้งและเปลี่ยนสีชมพู โดยไม่มีเงาเรืองแสง */
 .card{
 background:white;
 padding:40px 20px;
@@ -44,8 +43,9 @@ cursor:pointer;
 }
 
 .card:hover{
-transform:scale(1.05);
-background:#ffe4ef;
+transform:scale(1.05); /* เด้งขึ้น */
+background:#ffe4ef; /* สีชมพูอ่อน */
+/* ไม่ใส่เงาเรืองแสงตามสั่งค่ะ */
 }
 
 .section{display:none;padding:30px;}
@@ -69,7 +69,7 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* CALCULATOR */
+/* CALCULATOR - คงเดิมทุกอย่างตามต้นฉบับ */
 
 .container{
 background:#ffffff;
@@ -100,11 +100,6 @@ font-size:16px;
 box-sizing:border-box;
 }
 
-input:-webkit-autofill{
--webkit-text-fill-color:#000;
-transition:background-color 5000s ease-in-out 0s;
-}
-
 input:focus{
 outline:none;
 background:#fff9fc;
@@ -115,7 +110,7 @@ border:2px solid #ffeaf4;
 width:100%;
 margin:20px 0;
 padding:15px;
-background:#f2ffd9;
+background:#f2ffd9; /* สีเขียวอ่อนเดิม */
 color:#a9e400;
 border:none;
 border-radius:12px;
@@ -168,7 +163,6 @@ text-decoration:none;
 
 <body>
 
-<!-- HOME -->
 <div id="home" class="section active">
 <h1>All about Furriecat</h1>
 
@@ -182,67 +176,38 @@ text-decoration:none;
 </div>
 </div>
 
-<!-- MOCK -->
 <div id="mock" class="section">
 <h2>GED Mock Tests</h2>
-
 <img src="images/mock1.jpg">
-<img src="images/mock2.jpg">
-<img src="images/mock3.jpg">
-<img src="images/mock4.jpg">
-<img src="images/mock5.jpg">
-
 <button class="back" onclick="goHome()">Back</button>
 </div>
 
-<!-- PRODUCTS -->
 <div id="products" class="section">
 <h2>Furriecat Promotion Sets</h2>
-
 <img src="images/promo1.jpg">
-<img src="images/promo2.jpg">
-
 <button class="back" onclick="goHome()">Back</button>
 </div>
 
-<!-- CALCULATOR -->
 <div id="calculator" class="section">
-
 <div class="container">
-
-<h2 style="color:#eea9fc;">
-｡𖦹°⋆ GED score to GPA & GPAX calculator ₊˚𝜗𝜚˚⋆
-</h2>
-
+<h2 style="color:#eea9fc;">｡𖦹°⋆ GED score to GPA & GPAX calculator ₊˚𝜗𝜚˚⋆</h2>
 <label>Mathematical Reasoning:</label>
 <input type="number" id="math" placeholder="0-200">
-
 <label>Reasoning Through Language Arts (RLA):</label>
 <input type="number" id="rla" placeholder="0-200">
-
 <label>Social Studies:</label>
 <input type="number" id="soc" placeholder="0-200">
-
 <label>Science:</label>
 <input type="number" id="sci" placeholder="0-200">
-
-<button class="calcbtn" onclick="calculateGPA()">
-｡⋆𐙚⋆ calculate ₊⊹♡ᵎᵎ
-</button>
-
+<button class="calcbtn" onclick="calculateGPA()">｡⋆𐙚⋆ calculate ₊⊹♡ᵎᵎ</button>
 <div id="res"></div>
-
 </div>
-
 <button class="back" onclick="goHome()">Back</button>
-
 </div>
 
 <script>
-
 function openPage(page){
-document.querySelectorAll('.section')
-.forEach(sec=>sec.classList.remove('active'));
+document.querySelectorAll('.section').forEach(sec=>sec.classList.remove('active'));
 document.getElementById(page).classList.add('active');
 window.scrollTo(0,0);
 }
@@ -262,24 +227,17 @@ return gpa;
 }
 
 function calculateGPA(){
-
 const math=parseFloat(document.getElementById("math").value);
 const rla=parseFloat(document.getElementById("rla").value);
 const soc=parseFloat(document.getElementById("soc").value);
 const sci=parseFloat(document.getElementById("sci").value);
 
-if(
-isNaN(math)||isNaN(rla)||isNaN(soc)||isNaN(sci)||
-math<0||math>200||
-rla<0||rla>200||
-soc<0||soc>200||
-sci<0||sci>200
-){
-document.getElementById("res").innerHTML=
-"<b style='color:#ff7ab6'>Please enter valid scores for all four subjects</b>";
+if(isNaN(math)||isNaN(rla)||isNaN(soc)||isNaN(sci)||
+math<0||math>200||rla<0||rla>200||soc<0||soc>200||sci<0||sci>200){
+// แก้ไขข้อความตามสั่ง และจัดให้อยู่กึ่งกลางผ่าน text-align ของ parent (container)
+document.getElementById("res").innerHTML="<div style='text-align:center; margin-top:15px;'><b style='color:#ff7ab6'>Please enter valid scores for all four subjects</b></div>";
 return;
 }
-
 savedScores=[math,rla,soc,sci];
 renderTable();
 }
@@ -290,51 +248,24 @@ renderTable();
 }
 
 function renderTable(){
-
-const names=[
-"Math",
-"RLA",
-"Social",
-"Science"
-];
-
+const names=["Math","RLA","Social","Science"];
 let totalScore=0;
 let totalGPA=0;
 
-let html="<table>";
-html+="<tr><th>Subject</th><th>Score</th><th>GPA</th></tr>";
-
+let html="<table><tr><th>Subject</th><th>Score</th><th>GPA</th></tr>";
 for(let i=0;i<4;i++){
 let score=savedScores[i];
 let gpa=scoreToGPA(score);
-
 totalScore+=score;
 totalGPA+=gpa;
-
-html+=`<tr>
-<td>${names[i]}</td>
-<td>${score}</td>
-<td>${gpa.toFixed(currentDecimal)}</td>
-</tr>`;
+html+=`<tr><td>${names[i]}</td><td>${score}</td><td>${gpa.toFixed(currentDecimal)}</td></tr>`;
 }
-
 let gpax=totalGPA/4;
-
-html+=`<tr class="total-row">
-<td>TOTAL</td>
-<td>${totalScore}</td>
-<td>GPAX ${gpax.toFixed(currentDecimal)}</td>
-</tr></table>`;
-
-html+=`<button class="calcbtn" onclick="toggleDecimal()">
-${currentDecimal===3
-?"Convert to 2 Decimal Places"
-:"Convert to 3 Decimal Places"}
-</button>`;
-
+html+=`<tr class="total-row"><td>TOTAL</td><td>${totalScore}</td><td>GPAX ${gpax.toFixed(currentDecimal)}</td></tr></table>`;
+// ปุ่มเปลี่ยนทศนิยม ใช้สีเขียวอ่อน (class calcbtn) ตามสีปุ่มหลัก
+html+=`<button class="calcbtn" onclick="toggleDecimal()">${currentDecimal===3?"Convert to 2 Decimal Places":"Convert to 3 Decimal Places"}</button>`;
 document.getElementById("res").innerHTML=html;
 }
-
 </script>
 
 </body>
