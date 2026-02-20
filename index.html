@@ -29,7 +29,7 @@ max-width:900px;
 margin:auto;
 }
 
-/* แก้ไข: ปุ่มเด้งและเปลี่ยนสีชมพู โดยไม่มีเงาเรืองแสง */
+/* แก้ไข: เพื่อให้ iPad/iPhone เด้งและเปลี่ยนสีเหมือนคอม */
 .card{
 background:white;
 padding:40px 20px;
@@ -40,12 +40,19 @@ color:#333;
 font-weight:bold;
 transition:.3s;
 cursor:pointer;
+-webkit-tap-highlight-color: transparent; /* ลบไฮไลท์สีฟ้าเวลาจิ้มบน iPad */
 }
 
+/* เด้งตอนวางเมาส์ (คอมพิวเตอร์) */
 .card:hover{
-transform:scale(1.05); /* เด้งขึ้น */
-background:#ffe4ef; /* สีชมพูอ่อน */
-/* ไม่ใส่เงาเรืองแสงตามสั่งค่ะ */
+transform:scale(1.05);
+background:#ffe4ef;
+}
+
+/* เด้งตอนเอานิ้วจิ้ม (iPad/iPhone/Android) */
+.card:active{
+transform:scale(1.05);
+background:#ffe4ef;
 }
 
 .section{display:none;padding:30px;}
@@ -69,7 +76,7 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* CALCULATOR - คงเดิมทุกอย่างตามต้นฉบับ */
+/* CALCULATOR - คงเดิมทุกอย่างห้ามแตะห้ามยุ่ง */
 
 .container{
 background:#ffffff;
@@ -110,7 +117,7 @@ border:2px solid #ffeaf4;
 width:100%;
 margin:20px 0;
 padding:15px;
-background:#f2ffd9; /* สีเขียวอ่อนเดิม */
+background:#f2ffd9;
 color:#a9e400;
 border:none;
 border-radius:12px;
@@ -234,7 +241,7 @@ const sci=parseFloat(document.getElementById("sci").value);
 
 if(isNaN(math)||isNaN(rla)||isNaN(soc)||isNaN(sci)||
 math<0||math>200||rla<0||rla>200||soc<0||soc>200||sci<0||sci>200){
-// แก้ไขข้อความตามสั่ง และจัดให้อยู่กึ่งกลางผ่าน text-align ของ parent (container)
+// แก้ไขข้อความ และจัดกึ่งกลาง
 document.getElementById("res").innerHTML="<div style='text-align:center; margin-top:15px;'><b style='color:#ff7ab6'>Please enter valid scores for all four subjects</b></div>";
 return;
 }
@@ -262,7 +269,6 @@ html+=`<tr><td>${names[i]}</td><td>${score}</td><td>${gpa.toFixed(currentDecimal
 }
 let gpax=totalGPA/4;
 html+=`<tr class="total-row"><td>TOTAL</td><td>${totalScore}</td><td>GPAX ${gpax.toFixed(currentDecimal)}</td></tr></table>`;
-// ปุ่มเปลี่ยนทศนิยม ใช้สีเขียวอ่อน (class calcbtn) ตามสีปุ่มหลัก
 html+=`<button class="calcbtn" onclick="toggleDecimal()">${currentDecimal===3?"Convert to 2 Decimal Places":"Convert to 3 Decimal Places"}</button>`;
 document.getElementById("res").innerHTML=html;
 }
