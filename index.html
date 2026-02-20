@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +17,11 @@ background:#fff5f8;
 text-align:center;
 }
 
-/* HEADER */
 h1{
 color:#ff6fa5;
 margin-top:40px;
 }
 
-/* GRID MENU */
 .menu{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -48,15 +48,8 @@ transform:scale(1.05);
 background:#ffe4ef;
 }
 
-/* SECTION */
-.section{
-display:none;
-padding:30px;
-}
-
-.section.active{
-display:block;
-}
+.section{display:none;padding:30px;}
+.section.active{display:block;}
 
 img{
 width:90%;
@@ -66,7 +59,6 @@ border-radius:15px;
 box-shadow:0 0 10px rgba(0,0,0,0.2);
 }
 
-/* BACK BUTTON */
 .back{
 margin-top:20px;
 padding:12px 25px;
@@ -77,135 +69,168 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* ===== SLIDER (เพิ่มใหม่ ไม่กระทบ UX เดิม) ===== */
+/* CALCULATOR */
 
-.slider{
-position:relative;
-max-width:600px;
-margin:auto;
+.container{
+background:#ffffff;
+width:85%;
+max-width:450px;
+margin:40px auto;
+padding:30px 20px;
+border-radius:24px;
+box-shadow:0 15px 35px rgba(255,150,200,0.3);
+box-sizing:border-box;
 }
 
-.slide{
-display:none;
-}
-
-.slide.active{
+label{
 display:block;
+color:#ff9ccc;
+font-weight:bold;
+margin-top:15px;
 }
 
-.arrow{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-background:rgba(0,0,0,0.4);
-color:white;
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+background:#fffefa;
+border:1px solid #ffe6f2;
+border-radius:10px;
+font-size:16px;
+box-sizing:border-box;
+}
+
+input:-webkit-autofill{
+-webkit-text-fill-color:#000;
+transition:background-color 5000s ease-in-out 0s;
+}
+
+input:focus{
+outline:none;
+background:#fff9fc;
+border:2px solid #ffeaf4;
+}
+
+.calcbtn{
+width:100%;
+margin:20px 0;
+padding:15px;
+background:#f2ffd9;
+color:#a9e400;
 border:none;
-font-size:24px;
-padding:8px 14px;
+border-radius:12px;
+font-size:20px;
+font-weight:bold;
 cursor:pointer;
-border-radius:8px;
 }
 
-.prev{left:10px;}
-.next{right:10px;}
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:10px;
+text-align:center;
+border-bottom:1px solid #ffb6da;
+}
+
+th{color:#b388ff;}
+
+.total-row td{
+font-weight:bold;
+color:#65d0ff;
+border-bottom:none;
+}
+
+.contact-bar{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.contact-bar a{
+display:inline-block;
+white-space:nowrap;
+padding:15px 45px;
+background:#fffea9;
+color:#3c3c3c;
+font-size:20px;
+font-weight:bold;
+border-radius:50px;
+text-decoration:none;
+}
 
 </style>
 </head>
 
 <body>
 
-<!-- ================= HOME ================= -->
-
+<!-- HOME -->
 <div id="home" class="section active">
-
 <h1>All about Furriecat</h1>
 
 <div class="menu">
-
-<div class="card" onclick="openPage('mock')">
-MOCK GED
-</div>
-
-<div class="card">
-VIDEO COURSES GED
-</div>
-
-<div class="card">
-VIDEO COURSE SAT
-</div>
-
-<a class="card"
-href="https://furriecateducation.github.io/gedscorecalculator/"
-target="_blank">
-GED SCORE CALCULATOR
-</a>
-
-<div class="card">
-SAT CALCULATOR
-</div>
-
-<div class="card" onclick="openPage('products')">
-PRODUCTS
-</div>
-
+<div class="card" onclick="openPage('mock')">MOCK GED</div>
+<div class="card">VIDEO COURSES GED</div>
+<div class="card">VIDEO COURSE SAT</div>
+<div class="card" onclick="openPage('calculator')">GED SCORE CALCULATOR</div>
+<div class="card">SAT CALCULATOR</div>
+<div class="card" onclick="openPage('products')">PRODUCTS</div>
 </div>
 </div>
 
-<!-- ================= MOCK GED ================= -->
-
+<!-- MOCK -->
 <div id="mock" class="section">
-
 <h2>GED Mock Tests</h2>
 
-<div class="slider">
-
-<div class="slide active">
 <img src="images/mock1.jpg">
-</div>
-
-<div class="slide">
 <img src="images/mock2.jpg">
-</div>
-
-<div class="slide">
 <img src="images/mock3.jpg">
-</div>
-
-<div class="slide">
 <img src="images/mock4.jpg">
-</div>
-
-<div class="slide">
 <img src="images/mock5.jpg">
-</div>
-
-<button class="arrow prev" onclick="changeSlide(-1)">‹</button>
-<button class="arrow next" onclick="changeSlide(1)">›</button>
-
-</div>
 
 <button class="back" onclick="goHome()">Back</button>
-
 </div>
 
-<!-- ================= PRODUCTS ================= -->
-
+<!-- PRODUCTS -->
 <div id="products" class="section">
-
 <h2>Furriecat Promotion Sets</h2>
 
-<div class="slider">
-
-<div class="slide active">
 <img src="images/promo1.jpg">
-</div>
-
-<div class="slide">
 <img src="images/promo2.jpg">
+
+<button class="back" onclick="goHome()">Back</button>
 </div>
 
-<button class="arrow prev" onclick="changePromo(-1)">‹</button>
-<button class="arrow next" onclick="changePromo(1)">›</button>
+<!-- CALCULATOR -->
+<div id="calculator" class="section">
+
+<div class="container">
+
+<h2 style="color:#eea9fc;">
+｡𖦹°⋆ GED score to GPA & GPAX calculator ₊˚𝜗𝜚˚⋆
+</h2>
+
+<label>Mathematical Reasoning:</label>
+<input type="number" id="math" placeholder="0-200">
+
+<label>Reasoning Through Language Arts (RLA):</label>
+<input type="number" id="rla" placeholder="0-200">
+
+<label>Social Studies:</label>
+<input type="number" id="soc" placeholder="0-200">
+
+<label>Science:</label>
+<input type="number" id="sci" placeholder="0-200">
+
+<button class="calcbtn" onclick="calculateGPA()">
+｡⋆𐙚⋆ calculate ₊⊹♡ᵎᵎ
+</button>
+
+<div id="res"></div>
 
 </div>
 
@@ -215,15 +240,10 @@ PRODUCTS
 
 <script>
 
-/* PAGE NAVIGATION */
-
 function openPage(page){
 document.querySelectorAll('.section')
 .forEach(sec=>sec.classList.remove('active'));
-
-document.getElementById(page)
-.classList.add('active');
-
+document.getElementById(page).classList.add('active');
 window.scrollTo(0,0);
 }
 
@@ -231,40 +251,88 @@ function goHome(){
 openPage('home');
 }
 
-/* MOCK SLIDER */
+let savedScores=[];
+let currentDecimal=3;
 
-let mockIndex=0;
-
-function changeSlide(dir){
-
-const slides=document.querySelectorAll('#mock .slide');
-
-slides[mockIndex].classList.remove('active');
-
-mockIndex+=dir;
-
-if(mockIndex<0) mockIndex=slides.length-1;
-if(mockIndex>=slides.length) mockIndex=0;
-
-slides[mockIndex].classList.add('active');
+function scoreToGPA(score){
+let gpa=((score-50)/150)*4;
+if(gpa<0) gpa=0;
+if(gpa>4) gpa=4;
+return gpa;
 }
 
-/* PROMO SLIDER */
+function calculateGPA(){
 
-let promoIndex=0;
+const math=parseFloat(document.getElementById("math").value);
+const rla=parseFloat(document.getElementById("rla").value);
+const soc=parseFloat(document.getElementById("soc").value);
+const sci=parseFloat(document.getElementById("sci").value);
 
-function changePromo(dir){
+if(
+isNaN(math)||isNaN(rla)||isNaN(soc)||isNaN(sci)||
+math<0||math>200||
+rla<0||rla>200||
+soc<0||soc>200||
+sci<0||sci>200
+){
+document.getElementById("res").innerHTML=
+"<b style='color:#ff7ab6'>Please enter valid scores for all four subjects</b>";
+return;
+}
 
-const slides=document.querySelectorAll('#products .slide');
+savedScores=[math,rla,soc,sci];
+renderTable();
+}
 
-slides[promoIndex].classList.remove('active');
+function toggleDecimal(){
+currentDecimal=currentDecimal===3?2:3;
+renderTable();
+}
 
-promoIndex+=dir;
+function renderTable(){
 
-if(promoIndex<0) promoIndex=slides.length-1;
-if(promoIndex>=slides.length) promoIndex=0;
+const names=[
+"Math",
+"RLA",
+"Social",
+"Science"
+];
 
-slides[promoIndex].classList.add('active');
+let totalScore=0;
+let totalGPA=0;
+
+let html="<table>";
+html+="<tr><th>Subject</th><th>Score</th><th>GPA</th></tr>";
+
+for(let i=0;i<4;i++){
+let score=savedScores[i];
+let gpa=scoreToGPA(score);
+
+totalScore+=score;
+totalGPA+=gpa;
+
+html+=`<tr>
+<td>${names[i]}</td>
+<td>${score}</td>
+<td>${gpa.toFixed(currentDecimal)}</td>
+</tr>`;
+}
+
+let gpax=totalGPA/4;
+
+html+=`<tr class="total-row">
+<td>TOTAL</td>
+<td>${totalScore}</td>
+<td>GPAX ${gpax.toFixed(currentDecimal)}</td>
+</tr></table>`;
+
+html+=`<button class="calcbtn" onclick="toggleDecimal()">
+${currentDecimal===3
+?"Convert to 2 Decimal Places"
+:"Convert to 3 Decimal Places"}
+</button>`;
+
+document.getElementById("res").innerHTML=html;
 }
 
 </script>
